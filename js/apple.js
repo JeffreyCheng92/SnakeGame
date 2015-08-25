@@ -14,7 +14,7 @@
     var x = Math.floor(Math.random() * this.board.x);
     var y = Math.floor(Math.random() * this.board.y);
 
-    while (this.board.snake.occupy([x, y])) {
+    while (this.board.snake.occupy(x, y)) {
       x = Math.floor(Math.random() * this.board.x);
       y = Math.floor(Math.random() * this.board.y);
     }

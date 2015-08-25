@@ -51,14 +51,15 @@
     }
   };
 
-  Snake.prototype.occupy = function(pos) {
+  Snake.prototype.occupy = function(x, y) {
+    var occupies = false;
     this.segments.forEach( function(segment) {
-      if (segment.equals(new SnakeGame.Coord(pos[0], pos[1]))) {
-        return true;
+      if (segment.x === x && segment.y === y) {
+        occupies = true;
       }
     });
 
-    return false;
+    return occupies;
   };
 
   Snake.prototype.isDead = function() {
