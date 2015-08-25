@@ -6,7 +6,17 @@
   var View = SnakeGame.View = function($el) {
     this.$el = $el;
     this.board = new SnakeGame.Board(10, 10);
+
+    // listen for arrow key presses
     $(window).on("keydown", this.turnSnake.bind(this));
+
+    // render board every half second
+    this.interval = window.setInterval(
+      // have to bind because its a callback
+      this.step.bind(this),
+      500
+    );
+
   };
 
   View.ARROWS = {
@@ -26,5 +36,15 @@
       return;
     }
   };
+
+  View.prototype.step = function() {
+    if (this.board.snake.segments.length > 0) {
+      this.board.snake.move();
+      this.render();
+    } else {
+      // render you lose?
+      window.clearInterval(this.interval);
+    }
+  }
 
 })();
