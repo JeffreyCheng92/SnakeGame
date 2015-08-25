@@ -8,6 +8,7 @@
     this.y = y;
     this.snake = new SnakeGame.Snake(this);
     this.apple = new SnakeGame.Apple(this);
+    this.points = 0;
   };
 
   Board.prototype.centerX = function() {

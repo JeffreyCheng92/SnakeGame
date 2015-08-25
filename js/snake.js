@@ -35,6 +35,7 @@
 
     if (this.head().equals(this.board.apple.pos)) {
       // put a new apple and dont pop off
+      this.board.points += 1;
       this.board.apple.place();
     } else {
       //tail gets cut off cause moved forward

@@ -6,7 +6,7 @@
   var View = SnakeGame.View = function($el) {
     this.$el = $el;
     this.board = new SnakeGame.Board(25, 25);
-
+    $(".score").html("Score: " + this.board.points);
     this.setupHome();
 
   };
@@ -64,6 +64,7 @@
   };
 
   View.prototype.render = function() {
+    $(".score").html("Score: " + this.board.points);
     this.renderHelper(this.board.snake.segments, "snake");
     this.renderHelper([this.board.apple.pos], "apple");
   };
@@ -87,6 +88,7 @@
   };
 
   View.prototype.setupBoard = function() {
+    this.board.points = 0;
     this.$el.empty();
 
     for (var i = 0; i < this.board.x; i++) {
@@ -103,6 +105,10 @@
 
   View.prototype.step = function() {
     if (this.board.snake.segments.length > 0) {
+      // var applePos = this.board.apple.pos;
+      // if (this.board.snake.occupy(applePos.x, applePos.y)) {
+      //   this.points += 1;
+      // }
       this.board.snake.move();
       this.render();
     } else {

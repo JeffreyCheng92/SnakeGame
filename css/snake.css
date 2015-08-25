@@ -27,6 +27,17 @@ h1 {
   border: 5px solid black;
 }
 
+.score {
+  left: 0;
+  top: 0;
+}
+
+.score:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
 ul:after {
   content: "";
   clear: both;
