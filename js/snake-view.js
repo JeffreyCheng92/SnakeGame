@@ -5,14 +5,14 @@
 
   var View = SnakeGame.View = function($el) {
     this.$el = $el;
-    this.board = new SnakeGame.Board(10, 10);
+    this.board = new SnakeGame.Board(25, 25);
 
     this.setupHome();
 
   };
 
   View.prototype.setupHome = function() {
-    var content = $("<h3>").addClass("home").html("Press Any Key to Start");
+    var content = $("<h3>").addClass("home").html("Press Space to Start");
     this.$el.html(content);
     $(window).one("keydown", this.startGame.bind(this));
   };
@@ -20,13 +20,13 @@
   View.prototype.loseGame = function() {
     window.clearInterval(this.interval);
     var content = $("<h3>").addClass("home")
-                           .html("You lose :( \n Press Any Key to Play Again");
+                           .html("You lose :( \n Press Space to Play Again");
     this.$el.html(content);
     $(window).one("keydown", this.startGame.bind(this));
   };
 
   View.prototype.startGame = function(event) {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 32) {
       //set up elements
       this.board.snake.segments = new SnakeGame.Snake(this.board).segments;
       this.board.snake.direction = "N";

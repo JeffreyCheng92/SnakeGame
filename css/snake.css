@@ -8,11 +8,9 @@ body {
   font-family: sans-serif;
   text-align: center;
   font-weight: bold;
-  background-color: black;
 }
 
 h1 {
-  color: white;
   font-size: 60px;
   margin: 30px;
 }
@@ -20,32 +18,36 @@ h1 {
 .home {
   position: relative;
   top: 180px;
-  color: white;
 }
 
 .snake-game {
-  min-width: 400px;
-  min-height: 400px;
+  min-width: 475px;
+  min-height: 475px;
   display: inline-block;
-  border: 5px solid white;
+  border: 5px solid black;
+}
+
+ul:after {
+  content: "";
+  clear: both;
+  display: block;
 }
 
 li {
   float: left;
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+  /*border: 1px solid black;*/
+  border-radius: 2px;
   margin-bottom: -1px;
   margin-right: -1px;
 }
 
 .apple {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   /*background: red;*/
   border-radius: 50%;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
   background: -webkit-radial-gradient(circle, red, black); /* Safari */
   background: -o-radial-gradient(circle, red, black); /* Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(circle, red, black); /* Firefox 3.6 to 15 */
@@ -54,9 +56,18 @@ li {
 
 .snake {
   background: green;
+  border-radius: 2px;
+  background: -webkit-radial-gradient(circle, green, black); /* Safari */
+  background: -o-radial-gradient(circle, green, black); /* Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(circle, green, black); /* Firefox 3.6 to 15 */
+  background: radial-gradient(circle, green, black); /* Standard syntax */
 }
 
 .head {
   background: blue;
   border-radius: 50%;
+  background: -webkit-radial-gradient(circle, blue, black); /* Safari */
+  background: -o-radial-gradient(circle, blue, black); /* Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(circle, blue, black); /* Firefox 3.6 to 15 */
+  background: radial-gradient(circle, blue, black); /* Standard syntax */
 }
