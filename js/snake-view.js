@@ -7,6 +7,9 @@
     this.$el = $el;
     this.board = new SnakeGame.Board(10, 10);
 
+    //set up elements
+    this.setupBoard();
+
     // listen for arrow key presses
     $(window).on("keydown", this.turnSnake.bind(this));
 
@@ -37,6 +40,22 @@
     }
   };
 
+  View.prototype.render = function() {
+    this.renderHelper(this.board.snake.segments, "snake");
+  };
+
+  View.prototype.renderHelper = function(array, className) {
+    var classString = "." + className;
+    var $li = this.$el.find("li");
+    // remove all previous elements with the class
+    $li.filter(classString).removeClass();
+
+    array.forEach( function(pos) {
+      var number = (pos.x * this.board.x) + pos.y;
+      $li.eq(number).addClass(className);
+    }.bind(this));
+  };
+
   View.prototype.setupBoard = function() {
 
     for (var i = 0; i < this.board.x; i++) {
@@ -57,8 +76,9 @@
       this.render();
     } else {
       // render you lose?
+      alert("you lose!");
       window.clearInterval(this.interval);
     }
-  }
+  };
 
 })();

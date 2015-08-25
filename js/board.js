@@ -10,11 +10,11 @@
   };
 
   Board.prototype.centerX = function() {
-    return this.x/2;
+    return Math.floor(this.x/2);
   };
 
   Board.prototype.centerY = function() {
-    return this.y/2;
+    return Math.floor(this.y/2);
   };
 
   Board.SYMBOL = ".";
@@ -46,5 +46,8 @@
     rows.join("\n");
   };
 
+  Board.prototype.isValid = function(pos) {
+    return (pos.x >= 0 && pos.y >=0 && pos.x < this.x && pos.y < this.y);
+  };
 
 })();

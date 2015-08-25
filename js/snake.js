@@ -30,6 +30,11 @@
 
     //tail gets cut off cause moved forward
     this.segments.pop();
+
+    if (this.isDead) {
+      //remove snake from board if dead
+      this.segments = [];
+    }
   };
 
   Snake.prototype.turn = function(new_dir) {
@@ -40,10 +45,18 @@
     }
   };
 
+  Snake.prototype.isDead = function() {
+    var head = this.head;
 
+    if (!this.board.isValid(head)) {
+      return true;
+    }
 
+    for (var i = 1; i < this.segments.length; i++) {
+      if (this.segments[i].equals(head)) { return true; }
+    }
 
-
-
+    return false;
+  };
 
 })();
