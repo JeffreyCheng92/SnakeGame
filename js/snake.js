@@ -11,6 +11,7 @@
   };
 
   Snake.DIR = ["N", "S", "E", "W"];
+  Snake.SYMBOL = "S";
 
   Snake.MOVEMENTS = {
     "N": new Coord(-1, 0),
