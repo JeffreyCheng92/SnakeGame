@@ -7,18 +7,28 @@
     this.$el = $el;
     this.board = new SnakeGame.Board(10, 10);
 
-    this.startGame();
+    this.setupHome();
 
   };
 
-  // View.prototype.setupHome = function() {
-  //   var content = $("<h3>").addClass("home").html("Press Any Key to Start");
-  //   this.$el.html(content);
-  //   $(window).on("keydown", this.startGame.bind(this));
-  // };
+  View.prototype.setupHome = function() {
+    var content = $("<h3>").addClass("home").html("Press Any Key to Start");
+    this.$el.html(content);
+    $(window).one("keydown", this.startGame.bind(this));
+  };
+
+  View.prototype.loseGame = function() {
+    window.clearInterval(this.interval);
+    var content = $("<h3>").addClass("home")
+                           .html("You lose :( \n Press Any Key to Play Again");
+    this.$el.html(content);
+    $(window).one("keydown", this.startGame.bind(this));
+  };
 
   View.prototype.startGame = function() {
     //set up elements
+    this.board.snake.segments = new SnakeGame.Snake(this.board).segments;
+    this.board.snake.direction = "N";
     this.setupBoard();
 
     // listen for arrow key presses
@@ -67,6 +77,7 @@
   };
 
   View.prototype.setupBoard = function() {
+    this.$el.empty();
 
     for (var i = 0; i < this.board.x; i++) {
       var $ul = $("<ul>");
@@ -85,9 +96,7 @@
       this.board.snake.move();
       this.render();
     } else {
-      // render you lose?
-      alert("you lose!");
-      window.clearInterval(this.interval);
+      this.loseGame();
     }
   };
 

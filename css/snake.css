@@ -22,6 +22,8 @@ h1 {
 }
 
 .snake-game {
+  min-width: 425px;
+  min-height: 425px;
   display: inline-block;
   border: 5px solid white;
 }
