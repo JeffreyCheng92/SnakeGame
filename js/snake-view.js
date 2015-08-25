@@ -6,12 +6,21 @@
   var View = SnakeGame.View = function($el) {
     this.$el = $el;
     this.board = new SnakeGame.Board(25, 25);
-    $(".score").html("Score: " + this.board.points);
+    this.newGame = true;
     this.setupHome();
+  };
 
+  View.prototype.intervalSetup = function() {
+    // render board every half second
+    this.interval = window.setInterval(
+      // have to bind because its a callback
+      this.step.bind(this),
+      100
+    );
   };
 
   View.prototype.setupHome = function() {
+    $(".score").html("Score: " + this.board.points);
     var content = $("<h3>").addClass("home").html("Press Space to Start");
     this.$el.html(content);
     $(window).one("keydown", this.startGame.bind(this));
@@ -19,6 +28,7 @@
 
   View.prototype.loseGame = function() {
     window.clearInterval(this.interval);
+    this.newGame = false;
     var content = $("<h3>").addClass("home")
                            .html("You lose :( \n Press Space to Play Again");
     this.$el.html(content);
@@ -32,15 +42,14 @@
       this.board.snake.direction = "N";
       this.setupBoard();
 
-      // listen for arrow key presses
-      $(window).on("keydown", this.turnSnake.bind(this));
+      if (this.newGame) {
+        // only bind the first time to prevent multiple listeners
+        // listen for arrow key presses
+        $(window).on("keydown", this.turnSnake.bind(this));
+      }
 
-      // render board every half second
-      this.interval = window.setInterval(
-        // have to bind because its a callback
-        this.step.bind(this),
-        100
-      );
+      this.intervalSetup();
+
     } else {
       $(window).one("keydown", this.startGame.bind(this));
     }
@@ -51,12 +60,20 @@
     38: "N",
     39: "E",
     40: "S",
+    80: "PAUSE",
   };
 
   View.prototype.turnSnake = function(event) {
     var key = View.ARROWS[event.keyCode];
 
-    if (key) { //check to see if it's an arrow key pressed
+    if (key === "PAUSE" && !this.pause) {
+      window.clearInterval(this.interval);
+      this.pause = true;
+    } else if (key === "PAUSE" && this.pause) {
+      this.pause = false;
+      this.intervalSetup();
+    } else if (key) {
+      //check to see if it's an arrow key pressed
       this.board.snake.turn(key);
     } else {
       return;
