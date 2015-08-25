@@ -6,6 +6,7 @@
   var Snake = SnakeGame.Snake = function (board) {
     this.board = board;
     this.direction = "N";
+    this.currentlyTurning = false;
     var centerX = board.centerX();
     var centerY = board.centerY();
     this.segments = [new SnakeGame.Coord(centerX, centerY)];
@@ -29,6 +30,9 @@
     //head gets new location
     this.segments.unshift(this.head().plus(Snake.MOVEMENTS[this.direction]));
 
+    // you wont turn too fast and lose the game
+    this.currentlyTurning = false;
+
     if (this.head().equals(this.board.apple.pos)) {
       // put a new apple and dont pop off
       this.board.apple.place();
@@ -44,9 +48,12 @@
   };
 
   Snake.prototype.turn = function(new_dir) {
-    if (Snake.MOVEMENTS[this.direction].isOpposite(Snake.MOVEMENTS[new_dir])) {
+    var currentDirection = Snake.MOVEMENTS[this.direction];
+    var newDirection = Snake.MOVEMENTS[new_dir];
+    if (currentDirection.isOpposite(newDirection) || this.currentlyTurning) {
       return;
     } else {
+      this.currentlyTurning = true;
       this.direction = new_dir;
     }
   };

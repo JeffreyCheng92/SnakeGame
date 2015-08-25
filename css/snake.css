@@ -18,6 +18,8 @@ h1 {
 }
 
 .home {
+  position: relative;
+  top: 180px;
   color: white;
 }
 
@@ -37,6 +39,7 @@ li {
 
 .apple {
   background: red;
+  border-radius: 50%;
 }
 
 .snake {
