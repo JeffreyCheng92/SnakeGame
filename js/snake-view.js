@@ -37,6 +37,20 @@
     }
   };
 
+  View.prototype.setupBoard = function() {
+
+    for (var i = 0; i < this.board.x; i++) {
+      var $ul = $("<ul>");
+
+      for (var j = 0; j < this.board.y; j++) {
+        $ul.append($("<li>"));
+      }
+
+    this.$el.append($ul);
+    }
+
+  };
+
   View.prototype.step = function() {
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
