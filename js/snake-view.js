@@ -28,7 +28,7 @@
     this.interval = window.setInterval(
       // have to bind because its a callback
       this.step.bind(this),
-      500
+      100
     );
   };
 
@@ -51,6 +51,7 @@
 
   View.prototype.render = function() {
     this.renderHelper(this.board.snake.segments, "snake");
+    this.renderHelper([this.board.apple.pos], "apple");
   };
 
   View.prototype.renderHelper = function(array, className) {

@@ -7,6 +7,7 @@
     this.x = x;
     this.y = y;
     this.snake = new SnakeGame.Snake(this);
+    this.apple = new SnakeGame.Apple(this);
   };
 
   Board.prototype.centerX = function() {
@@ -38,6 +39,8 @@
     this.snake.segments.forEach( function(segment) {
       grid[segment.x][segment.y] = Snake.SYMBOL;
     });
+
+    grid[this.apple.pos.x][this.apple.pos.y] = Apple.SYMBOL;
 
     var rows = grid.map( function(row) {
       row.join("");

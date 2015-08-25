@@ -29,8 +29,13 @@
     //head gets new location
     this.segments.unshift(this.head().plus(Snake.MOVEMENTS[this.direction]));
 
-    //tail gets cut off cause moved forward
-    this.segments.pop();
+    if (this.head().equals(this.board.apple.pos)) {
+      // put a new apple and dont pop off
+      this.board.apple.place();
+    } else {
+      //tail gets cut off cause moved forward
+      this.segments.pop();
+    }
 
     if (this.isDead()) {
       //remove snake from board if dead
@@ -44,6 +49,16 @@
     } else {
       this.direction = new_dir;
     }
+  };
+
+  Snake.prototype.occupy = function(pos) {
+    this.segments.forEach( function(segment) {
+      if (segment.equals(new SnakeGame.Coord(pos[0], pos[1]))) {
+        return true;
+      }
+    });
+
+    return false;
   };
 
   Snake.prototype.isDead = function() {
