@@ -4,20 +4,21 @@
   }
 
   var Snake = SnakeGame.Snake = function (board) {
+    this.board = board;
     this.direction = "N";
     var centerX = board.centerX();
     var centerY = board.centerY();
-    this.segments = [new Coord(centerX, centerY)];
+    this.segments = [new SnakeGame.Coord(centerX, centerY)];
   };
 
   Snake.DIR = ["N", "S", "E", "W"];
   Snake.SYMBOL = "S";
 
   Snake.MOVEMENTS = {
-    "N": new Coord(-1, 0),
-    "S": new Coord(1, 0),
-    "W": new Coord(0, -1),
-    "E": new Coord(0, 1),
+    "N": new SnakeGame.Coord(-1, 0),
+    "S": new SnakeGame.Coord(1, 0),
+    "W": new SnakeGame.Coord(0, -1),
+    "E": new SnakeGame.Coord(0, 1),
   };
 
   Snake.prototype.head = function() {
@@ -26,12 +27,12 @@
 
   Snake.prototype.move = function() {
     //head gets new location
-    this.segments.unshift(this.head().plus(Snake.MOVEMENTS[this.dir]));
+    this.segments.unshift(this.head().plus(Snake.MOVEMENTS[this.direction]));
 
     //tail gets cut off cause moved forward
     this.segments.pop();
 
-    if (this.isDead) {
+    if (this.isDead()) {
       //remove snake from board if dead
       this.segments = [];
     }
@@ -46,7 +47,7 @@
   };
 
   Snake.prototype.isDead = function() {
-    var head = this.head;
+    var head = this.head();
 
     if (!this.board.isValid(head)) {
       return true;

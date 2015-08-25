@@ -7,6 +7,17 @@
     this.$el = $el;
     this.board = new SnakeGame.Board(10, 10);
 
+    this.startGame();
+
+  };
+
+  // View.prototype.setupHome = function() {
+  //   var content = $("<h3>").addClass("home").html("Press Any Key to Start");
+  //   this.$el.html(content);
+  //   $(window).on("keydown", this.startGame.bind(this));
+  // };
+
+  View.prototype.startGame = function() {
     //set up elements
     this.setupBoard();
 
@@ -19,7 +30,6 @@
       this.step.bind(this),
       500
     );
-
   };
 
   View.ARROWS = {
@@ -32,8 +42,7 @@
   View.prototype.turnSnake = function(event) {
     var key = View.ARROWS[event.keyCode];
 
-    //check to see if it's an arrow key pressed
-    if (key) {
+    if (key) { //check to see if it's an arrow key pressed
       this.board.snake.turn(key);
     } else {
       return;
