@@ -31,6 +31,14 @@
     this.segments.pop();
   };
 
+  Snake.prototype.turn = function(new_dir) {
+    if (Snake.MOVEMENTS[this.direction].isOpposite(Snake.MOVEMENTS[new_dir])) {
+      return;
+    } else {
+      this.direction = new_dir;
+    }
+  };
+
 
 
 
