@@ -25,21 +25,25 @@
     $(window).one("keydown", this.startGame.bind(this));
   };
 
-  View.prototype.startGame = function() {
-    //set up elements
-    this.board.snake.segments = new SnakeGame.Snake(this.board).segments;
-    this.board.snake.direction = "N";
-    this.setupBoard();
+  View.prototype.startGame = function(event) {
+    if (event.keyCode === 13) {
+      //set up elements
+      this.board.snake.segments = new SnakeGame.Snake(this.board).segments;
+      this.board.snake.direction = "N";
+      this.setupBoard();
 
-    // listen for arrow key presses
-    $(window).on("keydown", this.turnSnake.bind(this));
+      // listen for arrow key presses
+      $(window).on("keydown", this.turnSnake.bind(this));
 
-    // render board every half second
-    this.interval = window.setInterval(
-      // have to bind because its a callback
-      this.step.bind(this),
-      100
-    );
+      // render board every half second
+      this.interval = window.setInterval(
+        // have to bind because its a callback
+        this.step.bind(this),
+        100
+      );
+    } else {
+      $(window).one("keydown", this.startGame.bind(this));
+    }
   };
 
   View.ARROWS = {
@@ -67,12 +71,18 @@
   View.prototype.renderHelper = function(array, className) {
     var classString = "." + className;
     var $li = this.$el.find("li");
+
     // remove all previous elements with the class
     $li.filter(classString).removeClass();
 
-    array.forEach( function(pos) {
+    array.forEach( function(pos, index) {
       var number = (pos.x * this.board.x) + pos.y;
-      $li.eq(number).addClass(className);
+      if (index === 0 && className === "snake") {
+        $li.filter(".head").removeClass();
+        $li.eq(number).addClass("head");
+      } else {
+        $li.eq(number).addClass(className);
+      }
     }.bind(this));
   };
 

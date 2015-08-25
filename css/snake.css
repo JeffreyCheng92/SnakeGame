@@ -24,8 +24,8 @@ h1 {
 }
 
 .snake-game {
-  min-width: 425px;
-  min-height: 425px;
+  min-width: 400px;
+  min-height: 400px;
   display: inline-block;
   border: 5px solid white;
 }
@@ -35,13 +35,28 @@ li {
   width: 40px;
   height: 40px;
   border: 1px solid black;
+  margin-bottom: -1px;
+  margin-right: -1px;
 }
 
 .apple {
-  background: red;
+  width: 40px;
+  height: 40px;
+  /*background: red;*/
   border-radius: 50%;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  background: -webkit-radial-gradient(circle, red, black); /* Safari */
+  background: -o-radial-gradient(circle, red, black); /* Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(circle, red, black); /* Firefox 3.6 to 15 */
+  background: radial-gradient(circle, red, black); /* Standard syntax */
 }
 
 .snake {
   background: green;
+}
+
+.head {
+  background: blue;
+  border-radius: 50%;
 }
