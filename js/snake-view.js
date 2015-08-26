@@ -31,6 +31,7 @@
     $(".score").html("Score: " + this.board.points);
     var content = $("<h3>").addClass("home").html("Press Space to Start");
     this.$el.html(content);
+
     $(window).one("keydown", this.startGame.bind(this));
   };
 
