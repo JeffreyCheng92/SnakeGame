@@ -1,25 +1,25 @@
+.container {
+  text-align: center;
+  width: 50%;
+  margin-left: 35%;
+}
+
 .arrows {
-  display: inline-block;
+  /*display: inline-block;
   float: left;
-  transform: translate(-93%, -150%);
+  transform: translate(-93%, -150%);*/
 }
 
 .p {
-  display: inline-block;
+  /*display: inline-block;
   left: 25px;
   float: left;
-  transform: translate(75%);
+  transform: translate(75%);*/
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 
 body {
   font-family: sans-serif;
-  /*text-align: center;*/
   font-weight: bold;
 }
 
@@ -37,30 +37,37 @@ h1 {
 .snake-game {
   min-width: 475px;
   min-height: 475px;
-  /*display: inline-block;*/
   border: 5px solid black;
-  position: relative;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  /*position: relative;*/
+  /*margin-left: 50%;*/
+  /*transform: translateX(-50%);*/
   text-align: center;
   float: left;
 }
 
 .details {
-  text-align: center;
+  /*text-align: center;
   display: inline-block;
   float: left;
-  transform: translateX(-100%);
+  transform: translateX(-100%);*/
 }
 
 .score {
-  display: inline-block;
+  /*display: inline-block;*/
+  font-size: 36px;
 }
 
 .score:after {
-  content: "";
+  /*content: "";
   clear: both;
-  display: inline-block;
+  display: inline-block;*/
+}
+
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 ul:after {
