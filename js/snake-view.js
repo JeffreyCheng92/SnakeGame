@@ -10,6 +10,10 @@
     this.setupHome();
     this.speed = 100;
 
+    if (!document.cookie) {
+      document.cookie = 0;
+    }
+
     $(".easy").on("click", function() {
       $(".selected").removeClass("selected");
       $(".easy").addClass("selected");
@@ -63,8 +67,16 @@
 
   View.prototype.loseGame = function() {
     window.clearInterval(this.interval);
+
+    if (this.board.points > document.cookie) {
+      document.cookie = this.board.points;
+    }
+
     this.newGame = false;
+
+    // show difficulty settings
     $(".difficulty").show();
+
     var content = $("<h3>").addClass("home")
                            .html("You lose :( \n Press Space to Play Again");
     this.$el.html(content);
