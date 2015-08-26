@@ -12,6 +12,9 @@
 
     if (!document.cookie) {
       document.cookie = 0;
+      $(".highscore").html("Highscore: 0");
+    } else {
+      $(".highscore").html("Highscore: " + document.cookie);
     }
 
     $(".easy").on("click", function() {
@@ -70,7 +73,9 @@
 
     if (this.board.points > document.cookie) {
       document.cookie = this.board.points;
+      $(".highscore").html("Highscore: " + document.cookie);
     }
+
 
     this.newGame = false;
 
