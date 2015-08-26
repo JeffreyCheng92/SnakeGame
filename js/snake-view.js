@@ -71,12 +71,6 @@
   View.prototype.loseGame = function() {
     window.clearInterval(this.interval);
 
-    if (this.board.points > document.cookie) {
-      document.cookie = this.board.points;
-      $(".highscore").html("Highscore: " + document.cookie);
-    }
-
-
     this.newGame = false;
 
     // show difficulty settings
@@ -130,6 +124,12 @@
 
   View.prototype.render = function() {
     $(".score").html("Score: " + this.board.points);
+
+    if (this.board.points > document.cookie) {
+      document.cookie = this.board.points;
+      $(".highscore").html("Highscore: " + document.cookie);
+    }
+    
     this.renderHelper(this.board.snake.segments, "snake");
     this.renderHelper([this.board.apple.pos], "apple");
   };
