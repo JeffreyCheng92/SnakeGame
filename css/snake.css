@@ -1,8 +1,14 @@
-img {
+.arrows {
   display: inline-block;
-  /*clear: both;*/
   float: left;
   transform: translate(-93%, -150%);
+}
+
+.p {
+  display: inline-block;
+  left: 25px;
+  float: left;
+  transform: translate(75%);
 }
 
 ul {
