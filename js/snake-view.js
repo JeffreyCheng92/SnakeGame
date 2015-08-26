@@ -10,6 +10,14 @@
     this.setupHome();
   };
 
+  View.ARROWS = {
+    37: "W",
+    38: "N",
+    39: "E",
+    40: "S",
+    80: "PAUSE",
+  };
+
   View.prototype.intervalSetup = function() {
     // render board every half second
     this.interval = window.setInterval(
@@ -41,26 +49,16 @@
       this.board.snake.segments = new SnakeGame.Snake(this.board).segments;
       this.board.snake.direction = "N";
       this.setupBoard();
+      this.intervalSetup();
 
       if (this.newGame) {
         // only bind the first time to prevent multiple listeners
         // listen for arrow key presses
         $(window).on("keydown", this.turnSnake.bind(this));
       }
-
-      this.intervalSetup();
-
     } else {
       $(window).one("keydown", this.startGame.bind(this));
     }
-  };
-
-  View.ARROWS = {
-    37: "W",
-    38: "N",
-    39: "E",
-    40: "S",
-    80: "PAUSE",
   };
 
   View.prototype.turnSnake = function(event) {
@@ -117,15 +115,10 @@
 
     this.$el.append($ul);
     }
-
   };
 
   View.prototype.step = function() {
     if (this.board.snake.segments.length > 0) {
-      // var applePos = this.board.apple.pos;
-      // if (this.board.snake.occupy(applePos.x, applePos.y)) {
-      //   this.points += 1;
-      // }
       this.board.snake.move();
       this.render();
     } else {
