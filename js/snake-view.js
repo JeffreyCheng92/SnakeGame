@@ -8,6 +8,32 @@
     this.board = new SnakeGame.Board(25, 25);
     this.newGame = true;
     this.setupHome();
+    this.speed = 100;
+
+    $(".easy").on("click", function() {
+      $(".selected").removeClass("selected");
+      $(".easy").addClass("selected");
+      this.speed = 200;
+    }.bind(this));
+
+    $(".medium").on("click", function() {
+      $(".selected").removeClass("selected");
+      $(".medium").addClass("selected");
+      this.speed = 100;
+    }.bind(this));
+
+    $(".hard").on("click", function() {
+      $(".selected").removeClass("selected");
+      $(".hard").addClass("selected");
+      this.speed = 50;
+    }.bind(this));
+
+    $(".gg").on("click", function() {
+      $(".selected").removeClass("selected");
+      $(".gg").addClass("selected");
+      this.speed = 25;
+    }.bind(this));
+
   };
 
   View.ARROWS = {
@@ -23,7 +49,7 @@
     this.interval = window.setInterval(
       // have to bind because its a callback
       this.step.bind(this),
-      100
+      this.speed
     );
   };
 
@@ -38,6 +64,7 @@
   View.prototype.loseGame = function() {
     window.clearInterval(this.interval);
     this.newGame = false;
+    $(".difficulty").show();
     var content = $("<h3>").addClass("home")
                            .html("You lose :( \n Press Space to Play Again");
     this.$el.html(content);
@@ -47,6 +74,7 @@
   View.prototype.startGame = function(event) {
     if (event.keyCode === 32) {
       event.preventDefault();
+      $(".difficulty").hide();
       //set up elements
       this.board.snake.segments = new SnakeGame.Snake(this.board).segments;
       this.board.snake.direction = "N";
