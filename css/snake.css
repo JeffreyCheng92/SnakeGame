@@ -1,7 +1,7 @@
 .container {
   text-align: center;
-  width: 50%;
-  margin-left: 35%;
+  width: 60%;
+  margin-left: 33%;
 }
 
 .arrows {
@@ -46,10 +46,10 @@ h1 {
 }
 
 .details {
-  /*text-align: center;
-  display: inline-block;
+  /*text-align: center;*/
+  /*display: inline-block;*/
   float: left;
-  transform: translateX(-100%);*/
+  /*transform: translateX(-100%);*/
 }
 
 .score {

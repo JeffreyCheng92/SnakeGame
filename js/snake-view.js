@@ -45,6 +45,7 @@
 
   View.prototype.startGame = function(event) {
     if (event.keyCode === 32) {
+      event.preventDefault();
       //set up elements
       this.board.snake.segments = new SnakeGame.Snake(this.board).segments;
       this.board.snake.direction = "N";
@@ -65,13 +66,16 @@
     var key = View.ARROWS[event.keyCode];
 
     if (key === "PAUSE" && !this.pause) {
+      event.preventDefault();
       window.clearInterval(this.interval);
       this.pause = true;
     } else if (key === "PAUSE" && this.pause) {
+      event.preventDefault();
       this.pause = false;
       this.intervalSetup();
     } else if (key) {
       //check to see if it's an arrow key pressed
+      event.preventDefault();
       this.board.snake.turn(key);
     } else {
       return;
