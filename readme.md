@@ -2,6 +2,10 @@
 
 http://jeffreycheng92.github.io/SnakeGame/html/
 
+# SCREENSHOT
+
+![game_preview](./snake.png)
+
 # DESCRIPTION
 
 A browser rendition of the classic arcade game, Snake, implemented using jQuery and Javascript. It features multiple levels of difficulty and a local highscore system.
