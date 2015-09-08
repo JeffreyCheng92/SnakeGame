@@ -8,7 +8,7 @@
     this.board = new SnakeGame.Board(25, 25);
     this.newGame = true;
     this.setupHome();
-    this.speed = 100;
+    this.speed = 50;
 
     if (!document.cookie) {
       document.cookie = 0;
@@ -20,19 +20,19 @@
     $(".easy").on("click", function() {
       $(".selected").removeClass("selected");
       $(".easy").addClass("selected");
-      this.speed = 200;
+      this.speed = 100;
     }.bind(this));
 
     $(".medium").on("click", function() {
       $(".selected").removeClass("selected");
       $(".medium").addClass("selected");
-      this.speed = 100;
+      this.speed = 50;
     }.bind(this));
 
     $(".hard").on("click", function() {
       $(".selected").removeClass("selected");
       $(".hard").addClass("selected");
-      this.speed = 50;
+      this.speed = 35;
     }.bind(this));
 
     $(".gg").on("click", function() {
@@ -129,7 +129,7 @@
       document.cookie = this.board.points;
       $(".highscore").html("Highscore: " + document.cookie);
     }
-    
+
     this.renderHelper(this.board.snake.segments, "snake");
     this.renderHelper([this.board.apple.pos], "apple");
   };

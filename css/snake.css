@@ -90,6 +90,26 @@ li {
   margin-right: -1px;
 }
 
+button {
+  color: #fff;
+  background-color: #6496c8;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #27496d;
+}
+
+button:hover,
+button.hover {
+  background-color: #417cb8
+}
+
+button:active,
+button.active {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+}
+
 .apple {
   width: 20px;
   height: 20px;
